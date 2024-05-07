@@ -1,10 +1,10 @@
 package com.example.cookbook
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import com.example.cookbook.databinding.ActivityAddNewRecipeBinding
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.example.cookbook.databinding.ActivityMyRecipesBinding
+
 
 class MyRecipesActivity : AppCompatActivity() {
     private var _binding: ActivityMyRecipesBinding? = null
@@ -18,4 +18,14 @@ class MyRecipesActivity : AppCompatActivity() {
 
 
     }
+/*
+    private fun createNewTextView(text: String): TextView? {
+        val lparams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+        val textView = TextView(this)
+        textView.layoutParams = lparams
+        textView.text = "New text: $text"
+        return textView
+    }
+
+ */
 }

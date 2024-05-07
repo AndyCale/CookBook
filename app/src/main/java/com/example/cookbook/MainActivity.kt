@@ -4,6 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.text.InputType
+import android.view.MotionEvent
+import android.view.View
 import android.widget.Toast
 import com.example.cookbook.databinding.ActivityMainBinding
 import com.google.firebase.firestore.ktx.firestore
@@ -22,6 +25,26 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         val dexOutputDir: File = codeCacheDir
         dexOutputDir.setReadOnly()
+
+        /*
+        binding.showPassword.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                when (event?.action) {
+                    MotionEvent.ACTION_DOWN -> binding.password.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                    MotionEvent.ACTION_UP -> binding.password.inputType = 129
+                }
+                return v?.onTouchEvent(event) ?: true
+            }
+        })
+
+        */
+
+        binding.showPassword.setOnClickListener {
+            if (binding.password.inputType != InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD)
+                binding.password.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            else binding.password.inputType = 129
+        }
+
 
         var sp = getSharedPreferences("email and password", MODE_PRIVATE)
         if (sp.getString("TY", "null") != "null") {
@@ -48,6 +71,8 @@ class MainActivity : AppCompatActivity() {
                                         flag = true
                                         sp.edit().putString("fullName",
                                             document.getString("fullName")).commit()
+                                        sp.edit().putString("id",
+                                            document.id).commit()
                                         val intent = Intent(this@MainActivity,
                                             MainMenuActivity::class.java)
                                         startActivity(intent)

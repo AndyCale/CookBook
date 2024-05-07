@@ -31,6 +31,10 @@ class MainMenuActivity : AppCompatActivity() {
         var sp = getSharedPreferences("email and password", Context.MODE_PRIVATE)
         sp.edit().putString("TY", "9").commit()
 
+        if (sp.getString("id", "Noname") == "Noname") {
+            findIdUser()
+        }
+
         binding.fullName.text = sp.getString("fullName", "Произошла непредвиденная ошибка")
 
         binding.logOut.setOnClickListener {
@@ -41,7 +45,7 @@ class MainMenuActivity : AppCompatActivity() {
         }
 
         binding.myRecipes.setOnClickListener {
-
+            startActivity(Intent(this@MainMenuActivity, MyRecipesActivity::class.java))
         }
 
         binding.addRecipe.setOnClickListener {
@@ -65,5 +69,31 @@ class MainMenuActivity : AppCompatActivity() {
         }
     }
 
+    fun findIdUser() {
+        val db = Firebase.firestore
+        var sp = getSharedPreferences("email and password", Context.MODE_PRIVATE)
 
+        db.collection("users")
+            .whereEqualTo("fullName", sp.getString("fullName", "Noname"))
+            .get()
+            .addOnSuccessListener { result ->
+                if (result.isEmpty) {
+                    Toast.makeText(
+                        this@MainMenuActivity,
+                        "Данный пользователь не найден, попробуйте перезайти", Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    for (product in result) {
+                        sp.edit().putString("id", product.id).commit()
+                    }
+                }
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(
+                    this@MainMenuActivity,
+                    "Не получилось, попробуйте позже",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+    }
 }

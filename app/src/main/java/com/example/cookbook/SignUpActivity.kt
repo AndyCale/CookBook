@@ -3,6 +3,7 @@ package com.example.cookbook
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputType
 import android.widget.Toast
 import com.example.cookbook.databinding.ActivitySignUpBinding
 import com.google.firebase.firestore.ktx.firestore
@@ -20,6 +21,11 @@ class SignUpActivity : AppCompatActivity() {
         _binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.showPassword.setOnClickListener {
+            if (binding.password.inputType != InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD)
+                binding.password.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            else binding.password.inputType = 129
+        }
 
         with(binding) {
             signIn.setOnClickListener {
