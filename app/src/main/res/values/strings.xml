@@ -21,6 +21,7 @@
     <string name="write">Записать рецепт</string>
     <string name="ingredients">Ингредиенты</string>
     <string name="description">Описание приготовления</string>
+    <string name="category">Категория</string>
 
     <string-array name="category">
         <item>Первое</item>
@@ -29,5 +30,8 @@
         <item>Десерт</item>
         <item>Другое</item>
     </string-array>
+
+    <string name="noRecipes">У вас еще нет своих рецептов</string>
+    <string name="newRecipe">Создайте свой первый рецепт</string>
 
 </resources>

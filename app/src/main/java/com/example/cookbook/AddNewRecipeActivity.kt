@@ -24,29 +24,9 @@ class AddNewRecipeActivity : AppCompatActivity() {
         _binding = ActivityAddNewRecipeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        /*
-        var spinner = binding.category
-        val listItems = listOf("Первое", "Второе", "Гарнир", "Десерт", "Другое")
-        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, listItems)
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinner.adapter = arrayAdapter
-
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                val selectedItem = parent?.getItemAtPosition(position).toString()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
+        binding.back.setOnClickListener{
+            finish()
         }
-
-         */
 
         binding.create.setOnClickListener {
             if (binding.titleText.text.isEmpty())
@@ -67,7 +47,7 @@ class AddNewRecipeActivity : AppCompatActivity() {
 
     fun addNewRecipe() {
         val db = Firebase.firestore
-        var sp = getSharedPreferences("email and password", Context.MODE_PRIVATE)
+        val sp = getSharedPreferences("email and password", Context.MODE_PRIVATE)
         db.collection("recipes")
 
         val recipe = hashMapOf(

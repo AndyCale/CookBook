@@ -14,12 +14,12 @@ class SignUpActivity : AppCompatActivity() {
     private var _binding: ActivitySignUpBinding? = null
     private val binding: ActivitySignUpBinding
         get() = _binding ?: throw IllegalStateException("Binding in SignUp Activity must not be null")
-    val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val db = Firebase.firestore
 
         binding.showPassword.setOnClickListener {
             if (binding.password.inputType != InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD)
@@ -32,7 +32,6 @@ class SignUpActivity : AppCompatActivity() {
                 finish()
             }
 
-
             signUp.setOnClickListener {
                 if (!email.text.contains("@") || password.text.isEmpty() || fullName.text.isEmpty()) {
                     Toast.makeText(
@@ -41,7 +40,7 @@ class SignUpActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
-                    var sp = getSharedPreferences("email and password", MODE_PRIVATE)
+                    val sp = getSharedPreferences("email and password", MODE_PRIVATE)
 
                     db.collection("users")
                         .whereEqualTo("email", email.text.toString())
@@ -72,7 +71,4 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
     }
-
-
-
 }
