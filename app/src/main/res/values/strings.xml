@@ -31,7 +31,16 @@
         <item>Другое</item>
     </string-array>
 
+    <string-array name="choice">
+        <item>Все</item>
+        <item>Выбранная категория</item>
+        <item>Избранное</item>
+        <item>Только положительный рейтинг</item>
+    </string-array>
+
     <string name="noRecipes">У вас еще нет своих рецептов</string>
     <string name="newRecipe">Создайте свой первый рецепт</string>
+    <string name="change">Изменить рецепт</string>
+    <string name="recipes">Рецепты</string>
 
 </resources>

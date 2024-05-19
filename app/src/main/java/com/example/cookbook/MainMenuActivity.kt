@@ -45,6 +45,7 @@ class MainMenuActivity : AppCompatActivity() {
         }
 
         binding.myRecipes.setOnClickListener {
+            Toast.makeText(this, "Рецепты загружаются...", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this@MainMenuActivity, MyRecipesActivity::class.java))
         }
 
@@ -53,7 +54,8 @@ class MainMenuActivity : AppCompatActivity() {
         }
 
         binding.moreRecipes.setOnClickListener {
-
+            Toast.makeText(this, "Рецепты загружаются...", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this@MainMenuActivity, MoreRecipesActivity::class.java))
         }
     }
 

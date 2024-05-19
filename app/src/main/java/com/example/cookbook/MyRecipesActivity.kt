@@ -1,5 +1,6 @@
 package com.example.cookbook
 
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -35,6 +36,7 @@ class MyRecipesActivity : AppCompatActivity() {
         binding.recipes.setOnItemClickListener { parent, view, position, id ->
             val intent = Intent(this@MyRecipesActivity, CompleteRecipeActivity::class.java)
             intent.putExtra("id", listIdItem.get(position))
+            intent.putExtra("my", true)
             startActivity(intent)
         }
 
@@ -70,14 +72,4 @@ class MyRecipesActivity : AppCompatActivity() {
             }
 
     }
-/*
-    private fun createNewTextView(text: String): TextView? {
-        val lparams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
-        val textView = TextView(this)
-        textView.layoutParams = lparams
-        textView.text = "New text: $text"
-        return textView
-    }
-
- */
 }
